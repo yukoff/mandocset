@@ -13,7 +13,7 @@ on:
 
 
 env:
-  LINUX_VERSION: "5.11"
+  LINUX_VERSION: "5.13"
   LINUX_SRC: "https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/"
   # It's not possible to access env in the same environment https://github.community/t/how-to-use-env-context/16975/2
   LINUX_FILE: 'man-pages-$LINUX_VERSION.tar.xz'
