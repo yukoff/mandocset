@@ -10,9 +10,8 @@ on:
     tags:
       - "*"
 
-
-
 env:
+  DOCSET_NAME: Linux_Man_Pages
   LINUX_VERSION: "5.13"
   LINUX_SRC: "https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/"
   # It's not possible to access env in the same environment https://github.community/t/how-to-use-env-context/16975/2
@@ -48,35 +47,35 @@ jobs:
           zip
 
       # Runs a set of commands using the runners shell
-      - name: Download and unpack Linux
+      - name: Download and unpack Linux man-pages
         run: |
             wget -nv "$LINUX_SRC/${{env.LINUX_FILE}}"
             tar xvf ${{env.LINUX_FILE}}
 
-      - name: Download and unpack POSIX
+      - name: Download and unpack POSIX man-pages
         run: |
             wget -nv "$POSIX_SRC/${{env.POSIX_FILE}}"
             tar xvf ${{env.POSIX_FILE}}
 
       - name: Build
-        run: python3 mandocset.py -o Linux -p man-pages-$LINUX_VERSION man-pages-posix-$POSIX_VERSION -i etc/tux.png -I etc/tux@2x.png
+        run: python3 mandocset.py -o $DOCSET_NAME -p man-pages-$LINUX_VERSION man-pages-posix-$POSIX_VERSION -i etc/tux.png -I etc/tux@2x.png
 
       - name: Pack
-        run: zip -r Linux.zip Linux.docset
+        run: zip -r $DOCSET_NAME.zip $DOCSET_NAME.docset
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: Linux-manpage-docset
+          name: Linux-man-pages-docset
           path: |
-            Linux.zip
+            ${{ env.DOCSET_NAME }}.zip
 
       - name: Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            Linux.zip
+            ${{ env.DOCSET_NAME }}.zip
           draft: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
