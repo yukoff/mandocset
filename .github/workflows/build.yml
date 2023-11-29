@@ -1,8 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Build-Linux-man-pages
 
-# Controls when the action will run.
 on:
   push:
   pull_request:
@@ -12,7 +9,7 @@ on:
 
 env:
   DOCSET_NAME: Linux_Man_Pages
-  LINUX_VERSION: "5.13"
+  LINUX_VERSION: "6.05"
   LINUX_SRC: "https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/"
   # It's not possible to access env in the same environment https://github.community/t/how-to-use-env-context/16975/2
   LINUX_FILE: 'man-pages-$LINUX_VERSION.tar.xz'
@@ -21,20 +18,16 @@ env:
   # It's not possible to access env in the same environment https://github.community/t/how-to-use-env-context/16975/2
   POSIX_FILE: 'man-pages-posix-$POSIX_VERSION-a.tar.xz'
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
@@ -64,7 +57,7 @@ jobs:
         run: zip -r $DOCSET_NAME.zip $DOCSET_NAME.docset
 
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Linux-man-pages-docset
           path: |
