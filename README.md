@@ -9,7 +9,9 @@ By default the script uses the `man2html` utility, which should be available fro
 ## How to run
 
 ```bash
-python3 mandocset.py -o Linux_Man_Pages -p resource/man-pages-4.09/ resource/man-pages-posix-2013-a/ -i etc/tux.png -I etc/tux@2x.png
+python3 mandocset.py -o Linux_Man_Pages \
+    -p resource/man-pages-6.05/ resource/man-pages-posix-2017-a/ \
+    -i etc/tux.png -I etc/tux@2x.png
 ```
 
 Then copy or move the generated `Linux_Man_Pages.docset` to `~/.local/share/Zeal/Zeal/docsets` or `%APPDATA%\Local\Zeal\Zeal\docsets` on Windows.
@@ -18,9 +20,12 @@ You may also view help: `python3 mandocset.py -h`.
 
 ### Looking for a pre-built Linux manpages docset?
 
-1. Download [`etc/Linux.docset.zip`](/blob/master/etc/Linux.docset.zip) from this repo
-2. Extract it to `Linux.docset` folder
-3. Move this folder to `%APPDATA%\Local\Zeal\Zeal\docsets` on Windows or `~/.local/share/Zeal/Zeal/docsets/` on Linux
+1. Download latest `Linux_Man_Pages.docset.zip` from [releases](//github.com/yukoff/mandocset/releases/latest) page.
+2. Extract it to `%APPDATA%\Local\Zeal\Zeal\docsets` on Windows or `~/.local/share/Zeal/Zeal/docsets/` on Linux. For example, on Linux it should be like:
+
+```sh
+unzip ~/Downloads/Linux_Man_Pages.docset.zip -d ~/.local/share/Zeal/Zeal/docsets/
+```
 
 ### Generating a docset from your system's installed manpages
 
