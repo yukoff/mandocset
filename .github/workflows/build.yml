@@ -1,4 +1,4 @@
-name: Build-Linux-man-pages
+name: Build Docset
 
 on:
   push:

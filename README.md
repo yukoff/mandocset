@@ -1,6 +1,6 @@
 # mandocset
 
-[![Build](actions/workflows/build.yml/badge.svg)](actions/workflows/build.yml)
+[![Build](https://github.com/yukoff/mandocset/actions/workflows/build.yml/badge.svg)](https://github.com/yukoff/mandocset/actions/workflows/build.yml)
 
 This is a Python script ([`mandocset.py`](mandocset.py)) that generates a Dash docset from man pages. It takes folders with man pages as its arguments. Then in each folder it finds all folders containing digit in their name, and runs `man2html -r` for each file inside them.
 
